@@ -17,19 +17,41 @@ import {
 } from 'lucide-react';
 import { TARGET_SALES_EMAIL } from './utils/rfqEmail';
 import { initGoogleIntegrations, trackPageView } from './utils/analytics';
+import { getPageFromUrl, pushPageToUrl, PAGE_TITLES } from './utils/navigation';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('home');
+  const [currentPage, setCurrentPage] = useState<PageId>(() => getPageFromUrl());
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Initialize Google Analytics and Google Search Console tags
   useEffect(() => {
     initGoogleIntegrations();
+    // Synchronize initial URL and document title
+    const initialPage = getPageFromUrl();
+    pushPageToUrl(initialPage, true);
+  }, []);
+
+  // Listen to browser Back and Forward button events
+  useEffect(() => {
+    const handlePopState = () => {
+      const page = getPageFromUrl();
+      setCurrentPage(page);
+      if (PAGE_TITLES[page]) {
+        document.title = PAGE_TITLES[page];
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handlePopState);
+    };
   }, []);
 
   // Track page views on route changes
   useEffect(() => {
-    trackPageView(currentPage);
+    trackPageView(currentPage, PAGE_TITLES[currentPage]);
   }, [currentPage]);
 
   useEffect(() => {
@@ -41,6 +63,7 @@ export default function App() {
   }, []);
 
   const handleNavigate = (page: PageId) => {
+    pushPageToUrl(page);
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

@@ -1,4 +1,5 @@
 import { PageId } from '../types';
+import { PAGE_ROUTES } from '../utils/navigation';
 import {
   FileSpreadsheet,
   Mail,
@@ -40,20 +41,28 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => handleNav('rfq')}
+            <a
+              href="/rfq"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('rfq');
+              }}
               className="px-6 py-3 rounded-xl bg-[#c9a84c] hover:bg-[#d4af37] active:bg-[#b8942e] text-[#0a1628] font-bold text-sm shadow-navy hover:shadow-navy-lg transition-all cursor-pointer flex items-center gap-2"
             >
               <FileSpreadsheet className="w-4 h-4 text-[#0a1628]" />
               <span>Submit RFQ Form</span>
-            </button>
-            <button
-              onClick={() => handleNav('about')}
+            </a>
+            <a
+              href="/about"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('about');
+              }}
               className="px-5 py-3 rounded-xl bg-[#1a2a4a] hover:bg-[#243556] text-white font-medium text-sm border border-[#243556] hover:border-[#c9a84c]/50 transition-all cursor-pointer flex items-center gap-2"
             >
               <Users className="w-4 h-4 text-[#c9a84c]" />
               <span>Meet Our Team</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -63,13 +72,17 @@ export default function Footer({ onNavigate }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           {/* Brand Col */}
           <div className="lg:col-span-4 space-y-4">
-            <button
-              onClick={() => handleNav('home')}
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('home');
+              }}
               className="text-left cursor-pointer focus:outline-none block hover:opacity-95 transition-opacity"
               aria-label="JK NordSourcing Home"
             >
               <BrandLogo variant="dark" className="h-11 sm:h-12 w-auto max-w-[260px]" />
-            </button>
+            </a>
 
             <p className="text-slate-300 text-xs leading-relaxed max-w-sm">
               Connecting European industrial enterprises with certified global manufacturers. Dedicated to strict Nordic governance,
@@ -89,36 +102,78 @@ export default function Footer({ onNavigate }: FooterProps) {
             </h4>
             <ul className="space-y-2">
               <li>
-                <button onClick={() => handleNav('home')} className="hover:text-[#c9a84c] transition-colors cursor-pointer">
+                <a
+                  href={PAGE_ROUTES.home}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('home');
+                  }}
+                  className="hover:text-[#c9a84c] transition-colors cursor-pointer"
+                >
                   Home
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('who')} className="hover:text-[#c9a84c] transition-colors cursor-pointer">
+                <a
+                  href={PAGE_ROUTES.who}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('who');
+                  }}
+                  className="hover:text-[#c9a84c] transition-colors cursor-pointer"
+                >
                   Who We Are
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('about')} className="hover:text-[#c9a84c] transition-colors cursor-pointer flex items-center gap-1.5">
+                <a
+                  href={PAGE_ROUTES.about}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('about');
+                  }}
+                  className="hover:text-[#c9a84c] transition-colors cursor-pointer flex items-center gap-1.5"
+                >
                   <span>About Us</span>
                   <span className="px-1.5 py-0.5 rounded text-[9px] bg-[rgba(201,168,76,0.15)] text-[#c9a84c] font-bold border border-[rgba(201,168,76,0.3)]">Team</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('services')} className="hover:text-[#c9a84c] transition-colors cursor-pointer">
+                <a
+                  href={PAGE_ROUTES.services}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('services');
+                  }}
+                  className="hover:text-[#c9a84c] transition-colors cursor-pointer"
+                >
                   Services
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('process')} className="hover:text-[#c9a84c] transition-colors cursor-pointer">
+                <a
+                  href={PAGE_ROUTES.process}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('process');
+                  }}
+                  className="hover:text-[#c9a84c] transition-colors cursor-pointer"
+                >
                   Our Process
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => handleNav('rfq')} className="text-[#c9a84c] font-semibold hover:underline cursor-pointer flex items-center gap-1">
+                <a
+                  href={PAGE_ROUTES.rfq}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('rfq');
+                  }}
+                  className="text-[#c9a84c] font-semibold hover:underline cursor-pointer flex items-center gap-1"
+                >
                   <span>Submit RFQ</span>
                   <ArrowRight className="w-3 h-3" />
-                </button>
+                </a>
               </li>
             </ul>
           </div>
