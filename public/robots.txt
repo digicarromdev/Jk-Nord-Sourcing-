@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jknordsourcing.com/sitemap.xml

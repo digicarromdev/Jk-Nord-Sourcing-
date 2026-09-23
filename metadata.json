@@ -1,0 +1,6 @@
+{
+  "name": "JK NordSourcing",
+  "description": "European sourcing and procurement platform with buyer RFQ submission directly to info@jknordsourcing.com, comprehensive team section, and full mobile & desktop responsive experience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

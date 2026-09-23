@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Inter', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-primary: 'Inter', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-body: 'Inter', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  :root {
+    --font-primary: 'Inter', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-sans: 'Inter', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-display: 'Inter', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-body: 'Inter', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    
+    /* 1. Primary Brand Colors (Navy Blue) */
+    --color-deep-navy: #0a1628;  /* rgb(10, 22, 40) - Main dark backgrounds, Footer, Navbar (scrolled), Primary buttons */
+    --color-light-navy: #1a2a4a; /* rgb(26, 42, 74) - Gradients, Card backgrounds, Secondary dark sections */
+    --color-mid-navy: #243556;   /* rgb(36, 53, 86) - Tertiary backgrounds, subtle dark gradients */
+
+    /* 2. Accent Colors (Gold) */
+    --color-primary-gold: #c9a84c; /* rgb(201, 168, 76) - Main accent color, Icons, Highlights, Primary Buttons, Borders */
+    --color-light-gold: #d4af37;   /* rgb(212, 175, 55) - Hover states for buttons and links */
+    --color-dark-gold: #b8942e;    /* rgb(184, 148, 46) - Active states, darker accents */
+
+    /* 3. Typography Colors */
+    --color-dark-text: #212529;    /* rgb(33, 37, 41) - Main body text on light backgrounds */
+    --color-gray-text: #6c757d;    /* rgb(108, 117, 125) - Subtitles, secondary text, descriptions, footer text */
+    --color-white-text: #ffffff;   /* rgb(255, 255, 255) - Text on dark backgrounds */
+
+    /* 4. Background & UI Colors */
+    --color-pure-white: #ffffff;   /* rgb(255, 255, 255) - Main page background, Card backgrounds */
+    --color-off-white: #f8f9fa;    /* rgb(248, 249, 250) - Alternate section backgrounds */
+    --color-light-gray: #e9ecef;   /* rgb(233, 236, 239) - Borders, Input field backgrounds, Dividers */
+  }
+
+  html, body {
+    font-family: var(--font-body);
+    background-color: var(--color-pure-white);
+    color: var(--color-dark-text);
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: var(--font-display);
+    color: var(--color-dark-text);
+  }
+}
+
+/* 1. Primary Brand Colors (Navy Blue) */
+.bg-deep-navy, .bg-navy-950, .bg-navy-900 { background-color: #0a1628; }
+.bg-light-navy, .bg-navy-800, .bg-navy-850 { background-color: #1a2a4a; }
+.bg-mid-navy, .bg-navy-700, .bg-navy-750 { background-color: #243556; }
+
+.text-deep-navy, .text-navy-950, .text-navy-900 { color: #0a1628; }
+.text-light-navy, .text-navy-800 { color: #1a2a4a; }
+.text-mid-navy, .text-navy-700 { color: #243556; }
+
+.border-deep-navy { border-color: #0a1628; }
+.border-light-navy, .border-navy-800 { border-color: #1a2a4a; }
+.border-mid-navy, .border-navy-700 { border-color: #243556; }
+
+/* 2. Accent Colors (Gold) */
+.bg-gold-500, .bg-primary-gold { background-color: #c9a84c; }
+.bg-gold-400, .bg-light-gold { background-color: #d4af37; }
+.bg-gold-600, .bg-dark-gold { background-color: #b8942e; }
+
+.hover\:bg-gold-light:hover, .hover\:bg-gold-400:hover { background-color: #d4af37; }
+.active\:bg-gold-dark:active, .active\:bg-gold-600:active { background-color: #b8942e; }
+
+.text-gold-500, .text-gold-400, .text-primary-gold { color: #c9a84c; }
+.text-gold-300, .text-light-gold { color: #d4af37; }
+.text-gold-600, .text-dark-gold { color: #b8942e; }
+
+.border-gold-500, .border-primary-gold { border-color: #c9a84c; }
+.border-gold-400, .border-light-gold { border-color: #d4af37; }
+.border-gold-600, .border-dark-gold { border-color: #b8942e; }
+.ring-gold-500 { --tw-ring-color: #c9a84c; }
+
+/* 3. Typography Colors */
+.text-dark-text { color: #212529; }
+.text-gray-text { color: #6c757d; }
+.text-white-text { color: #ffffff; }
+
+/* 4. Background & UI Colors */
+.bg-pure-white { background-color: #ffffff; }
+.bg-off-white { background-color: #f8f9fa; }
+.bg-light-gray { background-color: #e9ecef; }
+.border-light-gray { border-color: #e9ecef; }
+.divide-light-gray > :not([hidden]) ~ :not([hidden]) { border-color: #e9ecef; }
+
+/* 5. Transparent & Overlay Colors (RGBA) */
+.shadow-navy {
+  box-shadow: 0 4px 20px rgba(10, 22, 40, 0.1);
+}
+.shadow-navy-lg, .hover\:shadow-navy-lg:hover {
+  box-shadow: 0 10px 30px rgba(10, 22, 40, 0.15);
+}
+
+.bg-gold-overlay {
+  background-color: rgba(201, 168, 76, 0.1);
+}
+.border-gold-border {
+  border-color: rgba(201, 168, 76, 0.3);
+}
+
+.bg-white-overlay {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.border-white-border {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Glassmorphism utility helpers */
+.glass-card-dark {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.card-gold-hover {
+  transition: all 0.25s ease-in-out;
+}
+.card-gold-hover:hover {
+  background-color: rgba(201, 168, 76, 0.08);
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 0 10px 30px rgba(10, 22, 40, 0.12);
+}

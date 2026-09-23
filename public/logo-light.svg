@@ -1,0 +1,92 @@
+<svg viewBox="0 0 460 118" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="JK NordSourcing Logo">
+  <defs>
+    <linearGradient id="goldMainLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="#fff8db" />
+      <stop offset="18%" stopColor="#fde047" />
+      <stop offset="42%" stopColor="#d4af37" />
+      <stop offset="70%" stopColor="#b4831f" />
+      <stop offset="92%" stopColor="#85530e" />
+      <stop offset="100%" stopColor="#543004" />
+    </linearGradient>
+    <linearGradient id="goldSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#fef08a" />
+      <stop offset="35%" stopColor="#eab308" />
+      <stop offset="65%" stopColor="#ca8a04" />
+      <stop offset="100%" stopColor="#713f12" />
+    </linearGradient>
+    <linearGradient id="goldHorizontal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#ca8a04" />
+      <stop offset="20%" stopColor="#eab308" />
+      <stop offset="50%" stopColor="#fde047" />
+      <stop offset="80%" stopColor="#eab308" />
+      <stop offset="100%" stopColor="#b45309" />
+    </linearGradient>
+    <linearGradient id="starFacetLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#ffffff" />
+      <stop offset="40%" stopColor="#fef08a" />
+      <stop offset="100%" stopColor="#eab308" />
+    </linearGradient>
+    <linearGradient id="starFacetShadow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#d97706" />
+      <stop offset="70%" stopColor="#92400e" />
+      <stop offset="100%" stopColor="#451a03" />
+    </linearGradient>
+    <linearGradient id="silverLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="#ffffff" />
+      <stop offset="25%" stopColor="#f1f5f9" />
+      <stop offset="50%" stopColor="#cbd5e1" />
+      <stop offset="78%" stopColor="#94a3b8" />
+      <stop offset="100%" stopColor="#334155" />
+    </linearGradient>
+    <filter id="logoBevelFilter" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0.8" dy="1.8" stdDeviation="1.2" floodColor="#1e293b" floodOpacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Stars Arc -->
+  <g id="stars-arc">
+    <g transform="translate(0, 0)">
+      <polygon points="66,22 64,18 69,12 66,22 68,17 73,20" fill="url(#starFacetLight)" />
+      <polygon points="66,22 73,20 68,25 66,22 68,25 63,27" fill="url(#starFacetShadow)" />
+      <!-- Star 1 -->
+      <path d="M 66 11.5 L 68.8 17.5 L 75.5 18.2 L 70.4 22.8 L 71.9 29.4 L 66 26 L 60.1 29.4 L 61.6 22.8 L 56.5 18.2 L 63.2 17.5 Z" fill="url(#goldMainLight)" stroke="#78350f" strokeWidth="0.6"/>
+      <!-- Star 2 -->
+      <path d="M 44 20.4 L 46.5 25.8 L 52.6 26.4 L 48 30.6 L 49.4 36.5 L 44 33.4 L 38.6 36.5 L 40 30.6 L 35.4 26.4 L 41.5 25.8 Z" fill="url(#goldMainLight)" stroke="#78350f" strokeWidth="0.6"/>
+      <!-- Star 3 -->
+      <path d="M 28 36.2 L 30.3 41.2 L 35.9 41.7 L 31.7 45.6 L 33 51.1 L 28 48.2 L 23 51.1 L 24.3 45.6 L 20.1 41.7 L 25.7 41.2 Z" fill="url(#goldMainLight)" stroke="#78350f" strokeWidth="0.6"/>
+      <!-- Star 4 -->
+      <path d="M 18 56 L 20.1 60.5 L 25.2 61 L 21.4 64.5 L 22.6 69.5 L 18 66.9 L 13.4 69.5 L 14.6 64.5 L 10.8 61 L 15.9 60.5 Z" fill="url(#goldMainLight)" stroke="#78350f" strokeWidth="0.6"/>
+      <!-- Star 5 -->
+      <path d="M 17 76.8 L 18.9 80.9 L 23.5 81.3 L 20.1 84.5 L 21.1 89 L 17 86.7 L 12.9 89 L 13.9 84.5 L 10.5 81.3 L 15.1 80.9 Z" fill="url(#goldMainLight)" stroke="#78350f" strokeWidth="0.6"/>
+      <!-- Star 6 -->
+      <path d="M 24 94.8 L 25.6 98.3 L 29.5 98.7 L 26.5 101.4 L 27.4 105.3 L 24 103.3 L 20.6 105.3 L 21.5 101.4 L 18.5 98.7 L 22.4 98.3 Z" fill="url(#goldMainLight)" stroke="#78350f" strokeWidth="0.6"/>
+    </g>
+  </g>
+
+  <!-- Monogram -->
+  <g id="monogram-emblem" filter="url(#logoBevelFilter)">
+    <!-- J -->
+    <path d="M 50 36 L 76 36 L 76 41.5 L 68 41.5 L 68 83 C 68 96 61 106.5 45 107.5 C 33 108.5 24 102 24 93.5 C 24 88 28 84 32.5 84 C 36 84 38.5 86.5 38.5 90 C 38.5 94.5 35 97 31 97.5 C 34.5 101.5 41 102.5 48 101.5 C 57.5 100 60.5 92 60.5 83 L 60.5 41.5 L 50 41.5 Z" fill="url(#silverLight)" stroke="#334155" strokeWidth="0.8" />
+    <!-- K Upper Wing -->
+    <path d="M 67 63 C 74 60 88 53 107 46 C 124 39 135 35 137 34 C 135 38 120 50 100 61 C 86 69 76 73 71 75 Z" fill="url(#goldMainLight)" stroke="#92400e" strokeWidth="0.6" />
+    <!-- K Lower Leg -->
+    <path d="M 69 66 C 77 73 89 85 101 95 C 112 104 122 108 124 108 C 120 107 106 99 94 89 C 82 78 74 71 69 66 Z" fill="url(#goldMainLight)" stroke="#92400e" strokeWidth="0.6" />
+    <!-- Center ribbon -->
+    <path d="M 58 56 C 68 53 79 56 87 64 C 78 69 68 70 60 67 Z" fill="url(#goldSheen)" stroke="#b45309" strokeWidth="0.5" />
+  </g>
+
+  <!-- Wordmark -->
+  <g id="wordmark" filter="url(#logoBevelFilter)">
+    <!-- JK -->
+    <text x="142" y="74" fontFamily="'Cinzel', 'Playfair Display', serif" fontWeight="800" fontSize="36.5" fill="url(#silverLight)" stroke="#334155" strokeWidth="0.6" letterSpacing="1.5">JK</text>
+    <!-- NORDSOURCING -->
+    <text x="200" y="74" fontFamily="'Cinzel', 'Playfair Display', serif" fontWeight="900" fontSize="36.5" fill="url(#goldMainLight)" stroke="#78350f" strokeWidth="0.65" letterSpacing="0.8">NORDSOURCING</text>
+  </g>
+
+  <!-- Tagline -->
+  <g id="tagline-row">
+    <line x1="142" y1="89" x2="170" y2="89" stroke="url(#goldHorizontal)" strokeWidth="2.2" strokeLinecap="round" />
+    <text x="176" y="92.5" fontFamily="'Inter', system-ui, sans-serif" fontWeight="800" fontSize="9.8" fill="url(#goldHorizontal)" letterSpacing="2.2" stroke="#78350f" strokeWidth="0.2">EUROPEAN SOURCING &amp; QUALITY PARTNER</text>
+    <line x1="428" y1="89" x2="456" y2="89" stroke="url(#goldHorizontal)" strokeWidth="2.2" strokeLinecap="round" />
+  </g>
+</svg>
