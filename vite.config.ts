@@ -64,9 +64,45 @@ function aistudioMediaPlugin(): Plugin {
 }
 // LINT.ThenChange(//depot/google3/java/com/google/alkali/boq/makersuite/applet_dev_service/templates/initializers/react_theme/vite.config.ts:aistudio_media_plugin)
 
+function spaRoutesPlugin(): Plugin {
+  const routes = [
+    'services',
+    'who-we-are',
+    'about',
+    'process',
+    'contact',
+    'rfq',
+  ];
+
+  return {
+    name: 'vite-plugin-spa-routes',
+    closeBundle() {
+      const distDir = path.resolve(__dirname, 'dist');
+      const indexHtmlPath = path.resolve(distDir, 'index.html');
+
+      if (!fs.existsSync(indexHtmlPath)) return;
+
+      const htmlContent = fs.readFileSync(indexHtmlPath, 'utf-8');
+
+      // Create fallback 404.html
+      fs.writeFileSync(path.resolve(distDir, '404.html'), htmlContent);
+
+      // Create directories with index.html for each route
+      for (const route of routes) {
+        const routeDir = path.resolve(distDir, route);
+        if (!fs.existsSync(routeDir)) {
+          fs.mkdirSync(routeDir, { recursive: true });
+        }
+        fs.writeFileSync(path.resolve(routeDir, 'index.html'), htmlContent);
+      }
+    },
+  };
+}
+
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss(), aistudioMediaPlugin()],
+    base: '/',
+    plugins: [react(), tailwindcss(), aistudioMediaPlugin(), spaRoutesPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

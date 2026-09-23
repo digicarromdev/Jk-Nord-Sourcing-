@@ -29,6 +29,23 @@ export function getPageFromUrl(): PageId {
   const path = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
   const hash = window.location.hash.toLowerCase().replace(/^#\/?/, '');
 
+  // Check URL query parameters (SPA 404 fallback e.g. /?p=/services)
+  try {
+    const searchParams = new URLSearchParams(window.location.search);
+    const routeParam = searchParams.get('p') || searchParams.get('route') || searchParams.get('page');
+    if (routeParam) {
+      const cleanParam = routeParam.toLowerCase().replace(/^\/+/, '').replace(/\/+$/, '');
+      if (cleanParam === 'services') return 'services';
+      if (cleanParam === 'rfq') return 'rfq';
+      if (cleanParam === 'who-we-are' || cleanParam === 'who') return 'who';
+      if (cleanParam === 'about' || cleanParam === 'about-us') return 'about';
+      if (cleanParam === 'process' || cleanParam === 'our-process') return 'process';
+      if (cleanParam === 'contact' || cleanParam === 'contact-us') return 'contact';
+    }
+  } catch {
+    // Ignore URL search parsing errors
+  }
+
   // Check pathname first
   if (path === '/services' || path.startsWith('/services')) return 'services';
   if (path === '/rfq' || path.startsWith('/rfq')) return 'rfq';

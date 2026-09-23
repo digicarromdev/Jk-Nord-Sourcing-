@@ -941,11 +941,11 @@ export default function RfqView({ onSuccess }: RfqViewProps) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* PRIMARY ACTION: DIRECT GMAIL COMPOSE */}
+              {/* PRIMARY ACTION: DIRECT GMAIL COMPOSE (Hidden on mobile) */}
               <button
                 type="submit"
                 id="submit-rfq-gmail-btn"
-                className="w-full py-4 px-6 rounded-xl bg-[#c9a84c] hover:bg-[#d4af37] active:bg-[#b8942e] text-[#0a1628] font-bold text-base shadow-navy hover:shadow-navy-lg flex items-center justify-center gap-3 transition-all cursor-pointer group active:scale-[0.99]"
+                className="hidden sm:flex w-full py-4 px-6 rounded-xl bg-[#c9a84c] hover:bg-[#d4af37] active:bg-[#b8942e] text-[#0a1628] font-bold text-base shadow-navy hover:shadow-navy-lg items-center justify-center gap-3 transition-all cursor-pointer group active:scale-[0.99]"
               >
                 <div className="w-7 h-7 rounded-lg bg-[#0a1628] text-[#c9a84c] flex items-center justify-center font-black text-sm shadow">
                   M
