@@ -89,8 +89,8 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
         id="main-navigation"
         className={`sticky top-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#0a1628]/95 text-white backdrop-blur-md shadow-navy-lg border-b border-[#1a2a4a] py-3'
-            : 'bg-white text-[#212529] border-b border-[#e9ecef] py-4'
+            ? 'bg-[#0a1628]/95 text-white backdrop-blur-md shadow-navy-lg border-b border-[#1a2a4a] py-2.5'
+            : 'bg-white text-[#212529] border-b border-[#e9ecef] py-3 sm:py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -107,7 +107,11 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
           >
             <BrandLogo
               variant={isScrolled ? 'dark' : 'light'}
-              className="h-10 sm:h-11 md:h-12 w-auto max-w-[220px] sm:max-w-[270px] transition-all duration-300"
+              className={`w-auto object-contain transition-all duration-300 drop-shadow-sm ${
+                isScrolled
+                  ? 'h-10 sm:h-11 md:h-12 max-w-[220px] sm:max-w-[270px]'
+                  : 'h-12 sm:h-14 md:h-16 lg:h-[4.25rem] max-w-[250px] sm:max-w-[320px] md:max-w-[380px]'
+              }`}
             />
           </a>
 
