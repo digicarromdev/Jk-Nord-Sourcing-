@@ -207,6 +207,15 @@ export default function RfqView({ onSuccess }: RfqViewProps) {
     document.body.removeChild(element);
   };
 
+  const handleFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      handleOpenMailto();
+    } else {
+      handleOpenDirectGmail();
+    }
+  };
+
   // Direct trigger for Gmail
   const handleOpenDirectGmail = (e?: FormEvent) => {
     if (e) e.preventDefault();
@@ -287,7 +296,7 @@ export default function RfqView({ onSuccess }: RfqViewProps) {
         </div>
 
         {/* The Main RFQ Form */}
-        <form onSubmit={handleOpenDirectGmail} className="space-y-8">
+        <form onSubmit={handleFormSubmit} className="space-y-8">
           {/* 1. Buyer Information */}
           <div className="bg-white rounded-2xl border border-[#e9ecef] shadow-navy overflow-hidden">
             <div className="bg-[#0a1628] text-white px-6 py-4 flex items-center justify-between">
@@ -940,12 +949,13 @@ export default function RfqView({ onSuccess }: RfqViewProps) {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* PRIMARY ACTION: DIRECT GMAIL COMPOSE (Hidden on mobile) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* PRIMARY ACTION: DIRECT GMAIL COMPOSE (Hidden on mobile and tablet) */}
               <button
-                type="submit"
+                type="button"
                 id="submit-rfq-gmail-btn"
-                className="hidden sm:flex w-full py-4 px-6 rounded-xl bg-[#c9a84c] hover:bg-[#d4af37] active:bg-[#b8942e] text-[#0a1628] font-bold text-base shadow-navy hover:shadow-navy-lg items-center justify-center gap-3 transition-all cursor-pointer group active:scale-[0.99]"
+                onClick={handleOpenDirectGmail}
+                className="hidden lg:flex w-full py-4 px-6 rounded-xl bg-[#c9a84c] hover:bg-[#d4af37] active:bg-[#b8942e] text-[#0a1628] font-bold text-base shadow-navy hover:shadow-navy-lg items-center justify-center gap-3 transition-all cursor-pointer group active:scale-[0.99]"
               >
                 <div className="w-7 h-7 rounded-lg bg-[#0a1628] text-[#c9a84c] flex items-center justify-center font-black text-sm shadow">
                   M
@@ -961,9 +971,9 @@ export default function RfqView({ onSuccess }: RfqViewProps) {
                 </div>
               </button>
 
-              {/* SECONDARY ACTION: DEFAULT MAIL CLIENT */}
+              {/* SECONDARY ACTION: DEFAULT MAIL CLIENT (Full width on mobile/tablet) */}
               <button
-                type="button"
+                type="submit"
                 id="submit-rfq-mailto-btn"
                 onClick={handleOpenMailto}
                 className="w-full py-4 px-6 rounded-xl bg-[#1a2a4a] hover:bg-[#243556] text-white font-bold text-base border border-[#243556] flex items-center justify-center gap-3 transition-all cursor-pointer hover:border-[#c9a84c]/50"

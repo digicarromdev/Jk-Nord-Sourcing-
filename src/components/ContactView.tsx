@@ -9,7 +9,8 @@ import {
   CheckCircle2,
   FileSpreadsheet,
   MessageSquare,
-  Building
+  Building,
+  ExternalLink
 } from 'lucide-react';
 import { TARGET_SALES_EMAIL, FINLAND_PHONE, INDIA_PHONE } from '../utils/rfqEmail';
 
@@ -28,22 +29,62 @@ export default function ContactView({ onNavigate }: ContactViewProps) {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [lastMethod, setLastMethod] = useState<'gmail' | 'mailto' | null>(null);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const buildEmailContent = () => {
     const subject = `[Contact Inquiry] ${formData.companyName ? formData.companyName + ' - ' : ''}${formData.subject}`;
-    const body = `Name: ${formData.fullName}
-Company: ${formData.companyName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Subject: ${formData.subject}
+    const body = `JK NordSourcing - Direct Contact Inquiry
+========================================
 
-Message:
-${formData.message}`;
+Sender Information:
+• Contact Name: ${formData.fullName || 'Not specified'}
+• Company: ${formData.companyName || 'Not specified'}
+• Business Email: ${formData.email || 'Not specified'}
+• Phone Number: ${formData.phone || 'Not specified'}
+• Topic: ${formData.subject}
 
+Message / Sourcing Requirements:
+----------------------------------------
+${formData.message}
+
+========================================
+Transmitted via JK NordSourcing Contact Desk (https://jknordsourcing.com)
+European Desk: ${TARGET_SALES_EMAIL} | Espoo, Finland`;
+
+    return { subject, body };
+  };
+
+  const handleFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      handleOpenMailto();
+    } else {
+      handleDirectGmail();
+    }
+  };
+
+  const handleDirectGmail = (e?: FormEvent) => {
+    if (e) e.preventDefault();
+    if (!formData.fullName || !formData.email || !formData.message) {
+      return;
+    }
+    const { subject, body } = buildEmailContent();
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(TARGET_SALES_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(gmailUrl, '_blank', 'noopener,noreferrer');
     setSubmitted(true);
+    setLastMethod('gmail');
+  };
+
+  const handleOpenMailto = () => {
+    if (!formData.fullName || !formData.email || !formData.message) {
+      alert('Please fill in your Name, Email, and Message before sending.');
+      return;
+    }
+    const { subject, body } = buildEmailContent();
+    const mailtoUrl = `mailto:${encodeURIComponent(TARGET_SALES_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoUrl;
+    setSubmitted(true);
+    setLastMethod('mailto');
   };
 
   return (
@@ -173,13 +214,19 @@ ${formData.message}`;
                 <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="font-semibold block mb-0.5">Inquiry Dispatched to Gmail!</strong>
-                    <span>Your message has been formatted and opened in Gmail addressed to {TARGET_SALES_EMAIL}.</span>
+                    <strong className="font-semibold block mb-0.5">
+                      {lastMethod === 'gmail' ? 'Message Opened in Gmail!' : 'Message Opened in Your Email App!'}
+                    </strong>
+                    <span>
+                      {lastMethod === 'gmail'
+                        ? `Your message has been pre-filled in Gmail addressed to ${TARGET_SALES_EMAIL}. Simply click 'Send' in your Gmail compose tab.`
+                        : `Your default email app (Outlook, Apple Mail, or Thunderbird) has been launched with your message pre-filled to ${TARGET_SALES_EMAIL}.`}
+                    </span>
                   </div>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#212529] mb-1">
@@ -269,13 +316,52 @@ ${formData.message}`;
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full py-3.5 px-6 rounded-xl bg-[#c9a84c] hover:bg-[#d4af37] active:bg-[#b8942e] text-[#0a1628] font-bold text-sm shadow-navy transition-all cursor-pointer flex items-center justify-center gap-2"
-                >
-                  <Send className="w-4 h-4 text-[#0a1628]" />
-                  <span>Send Message via Gmail / Email</span>
-                </button>
+                <div className="pt-2 space-y-3">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3.5">
+                    {/* PRIMARY ACTION: DIRECT GMAIL (Visible only on desktop screens) */}
+                    <button
+                      type="button"
+                      id="contact-submit-gmail-btn"
+                      onClick={handleDirectGmail}
+                      className="hidden lg:flex w-full py-3.5 px-4 rounded-xl bg-[#c9a84c] hover:bg-[#d4af37] active:bg-[#b8942e] text-[#0a1628] font-bold text-sm shadow-navy hover:shadow-navy-lg items-center justify-center gap-3 transition-all cursor-pointer group active:scale-[0.99]"
+                    >
+                      <div className="w-7 h-7 rounded-lg bg-[#0a1628] text-[#c9a84c] flex items-center justify-center font-black text-sm shadow shrink-0">
+                        M
+                      </div>
+                      <div className="text-left">
+                        <div className="text-sm font-black tracking-tight flex items-center gap-1.5">
+                          <span>Send via Gmail</span>
+                          <ExternalLink className="w-3.5 h-3.5 opacity-80 group-hover:translate-x-0.5 transition-transform" />
+                        </div>
+                        <div className="text-[11px] font-normal text-[#0a1628]/80 leading-tight">
+                          Direct in web Gmail
+                        </div>
+                      </div>
+                    </button>
+
+                    {/* SECONDARY ACTION: OTHER EMAIL CLIENTS (Full width on mobile/tablet) */}
+                    <button
+                      type="submit"
+                      id="contact-submit-other-mail-btn"
+                      onClick={handleOpenMailto}
+                      className="w-full py-3.5 px-4 rounded-xl bg-[#0a1628] hover:bg-[#1a2a4a] active:bg-[#070f1c] text-white font-bold text-sm border border-[#1a2a4a] hover:border-[#c9a84c]/50 flex items-center justify-center gap-3 transition-all cursor-pointer group active:scale-[0.99]"
+                    >
+                      <Mail className="w-5 h-5 text-[#c9a84c] shrink-0" />
+                      <div className="text-left">
+                        <div className="text-sm font-bold text-slate-100">
+                          Send with Other Email App
+                        </div>
+                        <div className="text-[11px] font-normal text-slate-400 leading-tight">
+                          Outlook, Apple Mail, or Thunderbird
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+
+                  <p className="text-center text-xs text-[#6c757d] pt-1">
+                    Pre-addressed to <a href={`mailto:${TARGET_SALES_EMAIL}`} className="text-[#0a1628] font-semibold underline hover:text-[#c9a84c]">{TARGET_SALES_EMAIL}</a> with automated Nordic desk routing
+                  </p>
+                </div>
               </form>
             </div>
           </div>
