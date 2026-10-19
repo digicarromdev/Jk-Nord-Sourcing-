@@ -11,13 +11,13 @@ export const PAGE_ROUTES: Record<PageId, string> = {
 };
 
 export const PAGE_TITLES: Record<PageId, string> = {
-  home: 'JK NordSourcing | European Sourcing & Procurement Partner',
-  services: 'Industrial Sourcing & Manufacturing Services | JK NordSourcing',
-  who: 'Who We Are | Nordic Engineering Governance | JK NordSourcing',
-  about: 'About Us & Leadership | JK NordSourcing',
-  process: '6-Stage Procurement & Quality Process | JK NordSourcing',
-  contact: 'Contact Procurement Desk | JK NordSourcing',
-  rfq: 'Submit Industrial RFQ | JK NordSourcing',
+  home: 'Lumi Siivous Suomi | Premium Kotisiivous & Yrityssiivous - Tulossa Pian',
+  services: 'Palvelut & Hinnasto | Lumi Siivous Suomi - 60% Kotitalousvähennys',
+  who: 'Tietoa Meistä & Luottosiivoojat | Lumi Siivous Suomi',
+  about: 'Turvallisuus, Vakuutus & Joutsenmerkki | Lumi Siivous Suomi',
+  process: 'Miten Siivous Toimii & Takuu | Lumi Siivous Suomi',
+  contact: 'Asiakaspalvelu & Yhteydenotto | Lumi Siivous Suomi',
+  rfq: 'Varaa Siivous & Liity VIP-Jonoon | Lumi Siivous Suomi',
 };
 
 /**
